@@ -27,7 +27,7 @@ public class Consumer implements Runnable {
         while (true) {
             try {
                 int sleepTime = (int) (1000 * Math.random());
-                System.out.println("Consumer #" + ID + " sleeps for " + sleepTime + " milliseconds.");
+//              System.out.println("Consumer #" + ID + " sleeps for " + sleepTime + " milliseconds.");
                 Thread.sleep(sleepTime);
 
                 if (meetingRoom.getDataID() != ID) {

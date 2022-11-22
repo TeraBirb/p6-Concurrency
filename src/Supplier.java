@@ -26,19 +26,21 @@ public class Supplier implements Runnable {
         while (true) {
             try {
                 int sleepTime = (int) (1000 * Math.random());
-                System.out.println("Supplier #" + ID + " sleeps for " + sleepTime + " milliseconds.");
+//              System.out.println("Supplier #" + ID + " sleeps for " + sleepTime + " milliseconds.");
                 Thread.sleep(sleepTime);
+                meetingRoom.lock.lock();
 
                 if (meetingRoom.getData() == -1) {
-                    meetingRoom.lock.lock();
+
                     meetingRoom.setData(data);
                     meetingRoom.setDataID(ID);
-                    System.out.println("-----> Supplier #" + ID + " dropped off " + data);
-                    meetingRoom.lock.unlock();
+                    System.out.println("-----> Supplier #" + ID + " || " + data + " dropped off " + data);
+
                 } else {
-                    System.out.println("Supplier #" + ID + ": Meeting room is not empty :(");
+                    System.out.println("Supplier #" + ID + " || " + data +": Meeting room is not empty :(");
                 }
 
+                meetingRoom.lock.unlock();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
