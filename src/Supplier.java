@@ -37,7 +37,7 @@ public class Supplier implements Runnable {
                     System.out.println("-----> Supplier #" + ID + " || " + data + " dropped off " + data);
 
                 } else {
-                    System.out.println("Supplier #" + ID + " || " + data +": Meeting room is not empty :(");
+//                    System.out.println("Supplier #" + ID + " || " + data +": Meeting room is not empty :(");
                 }
 
                 meetingRoom.lock.unlock();

@@ -27,19 +27,20 @@ public class Consumer implements Runnable {
         while (true) {
             try {
                 int sleepTime = (int) (1000 * Math.random());
-//              System.out.println("Consumer #" + ID + " sleeps for " + sleepTime + " milliseconds.");
+//                System.out.println("Consumer #" + ID + " sleeps for " + sleepTime + " milliseconds.");
                 Thread.sleep(sleepTime);
+                meetingRoom.lock.lock();
 
                 if (meetingRoom.getDataID() != ID) {
-                    System.out.println("Consumer #" + ID + ": Either there's no data or the data is for a different ID!");
+//                    System.out.println("Consumer #" + ID + ": Either there's no data or the data is for a different ID!");
                 } else {
-                    meetingRoom.lock.lock();
                     System.out.println("----> Consumer #" + ID + " has successfully retrieved " + meetingRoom.getData() +
                             "!");
                     setData(meetingRoom.getData());
                     meetingRoom.reset();
-                    meetingRoom.lock.unlock();
                 }
+
+                meetingRoom.lock.unlock();
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

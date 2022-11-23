@@ -15,7 +15,9 @@ public class MeetingRoom {
     }
 
     public void setData(int data) {
+        lock.lock();
         this.data = data;
+        lock.unlock();
     }
 
     public void setDataID(int dataID) {
